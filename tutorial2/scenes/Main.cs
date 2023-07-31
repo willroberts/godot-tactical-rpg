@@ -9,10 +9,7 @@ public partial class Main : Node
 	private int _score;
 
 	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		NewGame();
-	}
+	// public override void _Ready() {}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	// public override void _Process(double delta) {}
@@ -21,22 +18,38 @@ public partial class Main : Node
 	{
 		GetNode<Timer>("EnemyTimer").Stop();
 		GetNode<Timer>("ScoreTimer").Stop();
+		
+		GetNode<AudioStreamPlayer>("Music").Stop();
+		GetNode<AudioStreamPlayer>("GameOverSound").Play();
+	
+		GetNode<HUD>("HUD").ShowGameOver();
 	}
 
 	public void NewGame()
 	{
 		_score = 0;
 
+		// Note that for calling Godot-provided methods with strings,
+		// we have to use the original Godot snake_case name.
+		GetTree().CallGroup("mobs", Node.MethodName.QueueFree);
+
 		var player = GetNode<Player>("Player");
 		var startPosition = GetNode<Marker2D>("StartPosition");
 		player.Start(startPosition.Position);
 
 		GetNode<Timer>("StartTimer").Start();
+		
+		GetNode<AudioStreamPlayer>("Music").Play();
+		
+		var hud = GetNode<HUD>("HUD");
+		hud.UpdateScore(_score);
+		hud.ShowMessage("Get Ready!");
 	}
 
 	private void OnScoreTimerTimeout()
 	{
 		_score++;
+		GetNode<HUD>("HUD").UpdateScore(_score);
 	}
 
 	private void OnStartTimerTimeout()

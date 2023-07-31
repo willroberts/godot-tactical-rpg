@@ -3,6 +3,13 @@ using System;
 
 public partial class character : Sprite2D
 {
+	[Signal]
+	public delegate void HealthDepletedEventHandler();
+	
+	[Signal]
+	public delegate void HealthChangedEventHandler(int oldValue, int newValue);
+	
+	private int _health = 3;
 	private int _speed = 400;
 	private float _angularSpeed = Mathf.Pi;
 
@@ -41,5 +48,13 @@ public partial class character : Sprite2D
 		// Toggle ticking.
 		SetProcess(!IsProcessing());
 	}
-
+	
+	public void TakeDamage(int amount)
+	{
+		int oldHealth = _health;
+		_health -= amount;
+		
+		if (_health <= 0) { EmitSignal(SignalName.HealthDepleted); }
+		EmitSignal(SignalName.HealthChanged, oldHealth, _health);
+	}
 }

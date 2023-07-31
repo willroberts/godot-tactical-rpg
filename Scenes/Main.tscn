@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://s3x8osvw8a8c"]
 
-[ext_resource type="PackedScene" uid="uid://b2a305gqmcn5s" path="res://Scenes/Background.tscn" id="1_dbbuy"]
+[ext_resource type="PackedScene" uid="uid://cb3nms1f0p6fq" path="res://Scenes/Grid.tscn" id="1_4c6ed"]
 
 [node name="Main" type="Node"]
 
-[node name="Background" parent="." instance=ExtResource("1_dbbuy")]
+[node name="Grid" parent="." instance=ExtResource("1_4c6ed")]

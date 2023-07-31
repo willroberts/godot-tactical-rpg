@@ -1,35 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cb3nms1f0p6fq"]
+[gd_scene load_steps=3 format=3 uid="uid://cb3nms1f0p6fq"]
 
-[ext_resource type="Texture2D" uid="uid://b8i22dd82japq" path="res://Assets/Sprites/Tiles/floor-tiles.png" id="1_welru"]
+[ext_resource type="Script" path="res://Scenes/Main.cs" id="1_bcupj"]
+[ext_resource type="Script" path="res://Scenes/Grid.cs" id="1_ck5yt"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fvpqy"]
-texture = ExtResource("1_welru")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
+[node name="Main" type="Node"]
+script = ExtResource("1_bcupj")
 
-[sub_resource type="TileSet" id="TileSet_sip6q"]
-tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_fvpqy")
-
-[node name="Grid" type="Node"]
-
-[node name="FloorTiles" type="TileMap" parent="."]
-scale = Vector2(4, 4)
-tile_set = SubResource("TileSet_sip6q")
-format = 2
-layer_0/tile_data = PackedInt32Array(393216, 65536, 1, 393217, 65536, 1, 393218, 65536, 1, 393219, 65536, 1, 393220, 131072, 1, 393221, 65536, 1, 393222, 65536, 1, 393223, 65536, 1, 393224, 131072, 1, 393225, 65536, 1, 393226, 65536, 1, 393227, 0, 3, 0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608, 0, 0, 262144, 0, 0, 327680, 0, 0, 1, 0, 0, 65537, 0, 0, 131073, 0, 0, 196609, 0, 0, 262145, 0, 0, 327681, 0, 0, 2, 0, 0, 65538, 0, 0, 131074, 0, 0, 196610, 0, 0, 262146, 0, 0, 327682, 0, 0, 3, 0, 0, 65539, 0, 0, 131075, 0, 0, 196611, 0, 0, 262147, 0, 0, 327683, 0, 0, 4, 0, 0, 65540, 0, 0, 131076, 0, 0, 196612, 0, 0, 262148, 0, 0, 327684, 0, 0, 5, 0, 0, 65541, 0, 0, 131077, 0, 0, 196613, 0, 0, 262149, 0, 0, 327685, 0, 0, 6, 0, 0, 65542, 0, 0, 131078, 0, 0, 196614, 0, 0, 262150, 0, 0, 327686, 0, 0, 7, 0, 0, 65543, 0, 0, 131079, 0, 0, 196615, 0, 0, 262151, 0, 0, 327687, 0, 0, 8, 0, 0, 65544, 0, 0, 131080, 0, 0, 196616, 0, 0, 262152, 0, 0, 327688, 0, 0, 9, 0, 0, 65545, 0, 0, 131081, 0, 0, 196617, 0, 0, 262153, 0, 0, 327689, 0, 0, 65546, 0, 0, 131082, 0, 0, 196618, 0, 0, 262154, 0, 0, 327690, 0, 0, 11, 196608, 1, 327691, 65536, 1, 262155, 65536, 1, 196619, 131072, 1, 131083, 65536, 1, 65547, 65536, 1, 10, 0, 0)
+[node name="Grid" type="Node2D" parent="."]
+script = ExtResource("1_ck5yt")

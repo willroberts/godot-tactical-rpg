@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://oaw2mdmgpmag"]
-
-[ext_resource type="Script" path="res://scenes/npc.cs" id="1_2ap8v"]
-[ext_resource type="Texture2D" uid="uid://mwiix3bapc52" path="res://icon.svg" id="1_6ldnd"]
-
-[node name="Sprite2D" type="Sprite2D"]
-position = Vector2(584, 338)
-texture = ExtResource("1_6ldnd")
-script = ExtResource("1_2ap8v")

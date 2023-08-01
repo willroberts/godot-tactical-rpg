@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://idvbfl3ygpuj"]
-
-[node name="Button" type="Button"]
-offset_left = 442.0
-offset_top = 30.0
-offset_right = 736.0
-offset_bottom = 130.0
-text = "Toggle Ticking"

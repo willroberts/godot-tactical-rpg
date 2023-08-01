@@ -15,7 +15,7 @@ public partial class Grid : Node2D
 	public int CellSize = 128;
 	
 	private Dictionary Cells = new Godot.Collections.Dictionary();
-	
+
 	// Constructor.
 	public Grid()
 	{
@@ -25,15 +25,27 @@ public partial class Grid : Node2D
 			{
 				Vector2 coords = new Vector2(x, y);
 				GD.Print("Coords:", coords);
-				//Cells[coords] = 'some_variant';
+				Cells[coords] = 0;
+				
+				// Debugging: Show grid lines.
+				ReferenceRect rect = new ReferenceRect();
+				rect.Position = GridToWorld(new Vector2(x, y));
+				rect.Size = new Vector2(CellSize, CellSize);
+				rect.EditorOnly = false;
+				AddChild(rect);
+				
+				// Debugging: Show labels.
+				Label label = new Label();
+				label.Position = GridToWorld(new Vector2(x, y));
+				label.Text = new Vector2(x, y).ToString();
+				AddChild(label);
 			}
 		}
 	}
-	
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -46,9 +58,8 @@ public partial class Grid : Node2D
 		return pos * CellSize;
 	}
 	
-	public Vector2 WorldToGrid(Vector2 pos)
-	{
-		//return Math.Floor(pos / CellSize);
-		return Vector2.Zero;
-	}
+	//public Vector2 WorldToGrid(Vector2 pos)
+	//{
+	//	return Math.Floor(pos / CellSize);
+	//}
 }

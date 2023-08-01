@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="godot-tactical-rpg"
-config/features=PackedStringArray("4.1", "GL Compatibility")
+run/main_scene="res://Scenes/Main.tscn"
+config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
 
 [display]
 
-window/size/viewport_width=1536
-window/size/viewport_height=960
+window/size/viewport_width=960
+window/size/viewport_height=1536
 window/stretch/mode="canvas_items"
 
 [dotnet]

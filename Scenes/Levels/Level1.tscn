@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://biy0vqvqd2jxy"]
+[gd_scene load_steps=6 format=3 uid="uid://biy0vqvqd2jxy"]
 
 [ext_resource type="Texture2D" uid="uid://dpmpubkwvp13l" path="res://Assets/Sprites/Tiny Dungeon/Tilemap/tilemap_packed.png" id="1_bix38"]
 [ext_resource type="PackedScene" uid="uid://b1p4yn5wcgaki" path="res://Scenes/Enemies/Enemy.tscn" id="2_xakq1"]
+[ext_resource type="PackedScene" uid="uid://c6ahr8icenhf6" path="res://Scenes/Grid.tscn" id="3_es2xp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dyqm3"]
 texture = ExtResource("1_bix38")
@@ -156,11 +157,13 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(524290, 196608, 5, 458755, 196608, 5, 786440, 655360, 6, 786439, 655360, 6, 851975, 655360, 6, 1179649, 327680, 7)
 
-[node name="Rat1" parent="." instance=ExtResource("2_xakq1")]
+[node name="Enemy1" parent="." instance=ExtResource("2_xakq1")]
 position = Vector2(502, 400)
 
-[node name="Rat2" parent="." instance=ExtResource("2_xakq1")]
+[node name="Enemy2" parent="." instance=ExtResource("2_xakq1")]
 position = Vector2(560, 993)
 
-[node name="GreyRat1" parent="." instance=ExtResource("2_xakq1")]
+[node name="Enemy3" parent="." instance=ExtResource("2_xakq1")]
 position = Vector2(158, 1117)
+
+[node name="Grid" parent="." instance=ExtResource("3_es2xp")]

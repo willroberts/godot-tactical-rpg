@@ -9,10 +9,13 @@ public partial class Grid : Node2D
 	public int Width = 12;
 	
 	[Export]
-	public int Height = 16;
+	public int Height = 20;
 	
 	[Export]
 	public int CellSize = 64;
+	
+	[Export]
+	public bool DebugMode = true;
 	
 	private Dictionary Cells = new Godot.Collections.Dictionary();
 
@@ -24,21 +27,25 @@ public partial class Grid : Node2D
 			foreach (int y in Enumerable.Range(0, Height))
 			{
 				Vector2 coords = new Vector2(x, y);
-				GD.Print("Coords:", coords);
 				Cells[coords] = 0;
 				
-				// Debugging: Show grid lines.
-				ReferenceRect rect = new ReferenceRect();
-				rect.Position = GridToWorld(new Vector2(x, y));
-				rect.Size = new Vector2(CellSize, CellSize);
-				rect.EditorOnly = false;
-				AddChild(rect);
-				
-				// Debugging: Show labels.
-				Label label = new Label();
-				label.Position = GridToWorld(new Vector2(x, y));
-				label.Text = new Vector2(x, y).ToString();
-				AddChild(label);
+				if (DebugMode)
+				{
+					GD.Print("Coords:", coords);
+
+					// Debugging: Show grid lines.
+					ReferenceRect rect = new ReferenceRect();
+					rect.Position = GridToWorld(new Vector2(x, y));
+					rect.Size = new Vector2(CellSize, CellSize);
+					rect.EditorOnly = false;
+					AddChild(rect);
+					
+					// Debugging: Show labels.
+					Label label = new Label();
+					label.Position = GridToWorld(new Vector2(x, y));
+					label.Text = new Vector2(x, y).ToString();
+					AddChild(label);
+				}
 			}
 		}
 	}

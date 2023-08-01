@@ -1,3 +1,10 @@
-[gd_scene format=3 uid="uid://2fw45dhfx070"]
+[gd_scene load_steps=3 format=3 uid="uid://2fw45dhfx070"]
+
+[ext_resource type="PackedScene" uid="uid://chew5xvakg6e7" path="res://Scenes/Grid.tscn" id="1_cs0y5"]
+[ext_resource type="PackedScene" uid="uid://bvg5m7a8ptutk" path="res://Scenes/HUD.tscn" id="2_5cwy8"]
 
 [node name="Main" type="Node"]
+
+[node name="HUD" parent="." instance=ExtResource("2_5cwy8")]
+
+[node name="Grid" parent="." instance=ExtResource("1_cs0y5")]

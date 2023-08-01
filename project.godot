@@ -16,8 +16,8 @@ config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
 
 [display]
 
-window/size/viewport_width=960
-window/size/viewport_height=1536
+window/size/viewport_width=768
+window/size/viewport_height=1280
 window/stretch/mode="canvas_items"
 
 [dotnet]

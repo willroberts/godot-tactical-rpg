@@ -6,13 +6,13 @@ using System.Linq;
 public partial class Grid : Node2D
 {
 	[Export]
-	public int Width = 10;
+	public int Width = 12;
 	
 	[Export]
 	public int Height = 16;
 	
 	[Export]
-	public int CellSize = 128;
+	public int CellSize = 64;
 	
 	private Dictionary Cells = new Godot.Collections.Dictionary();
 

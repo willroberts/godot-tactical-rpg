@@ -48,7 +48,7 @@ public partial class Grid : Node2D
 	
 	public Vector2 WorldToGrid(Vector2 pos)
 	{
-		//return System.Math.Floor(pos / CellSize);
+		//return Math.Floor(pos / CellSize);
 		return Vector2.Zero;
 	}
 }

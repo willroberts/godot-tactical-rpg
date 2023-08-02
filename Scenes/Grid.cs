@@ -27,11 +27,11 @@ public partial class Grid : Node2D
 			foreach (int y in Enumerable.Range(0, Height))
 			{
 				Vector2 coords = new Vector2(x, y);
-				Cells[coords] = 0;
+				Cells[coords] = new Godot.Collections.Dictionary();
 				
 				if (DebugMode)
 				{
-					GD.Print("Coords:", coords);
+					//GD.Print("Coords:", coords);
 
 					// Debugging: Show grid lines.
 					ReferenceRect rect = new ReferenceRect();
@@ -60,13 +60,28 @@ public partial class Grid : Node2D
 	{
 	}
 	
-	public Vector2 GridToWorld(Vector2 pos)
+	public void SpawnEnemy(Vector2 Position)
 	{
-		return pos * CellSize;
+		Dictionary ExistingContents = (Dictionary)Cells[Position];
+		if (ExistingContents.Count() != 0)
+		{
+			GD.Print("Cell already occupied! Not spawning enemy.");
+			GD.Print("Occupant:", ExistingContents);
+			return;
+		}
+		
+		var scn = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/Enemy.tscn");
+		var spawnedEnemy = scn.Instantiate();
+		AddChild(spawnedEnemy);
 	}
 	
-	//public Vector2 WorldToGrid(Vector2 pos)
+	public Vector2 GridToWorld(Vector2 Position)
+	{
+		return Position * CellSize;
+	}
+	
+	//public Vector2 WorldToGrid(Vector2 Position)
 	//{
-	//	return Math.Floor(pos / CellSize);
+	//	return Math.Floor(Position / CellSize);
 	//}
 }

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://biy0vqvqd2jxy"]
+[gd_scene load_steps=7 format=3 uid="uid://biy0vqvqd2jxy"]
 
 [ext_resource type="Texture2D" uid="uid://dpmpubkwvp13l" path="res://Assets/Sprites/Tiny Dungeon/Tilemap/tilemap_packed.png" id="1_bix38"]
-[ext_resource type="PackedScene" uid="uid://b1p4yn5wcgaki" path="res://Scenes/Enemies/Enemy.tscn" id="2_xakq1"]
+[ext_resource type="Script" path="res://Scenes/Levels/Level1.cs" id="1_rodr2"]
+[ext_resource type="PackedScene" uid="uid://b1p4yn5wcgaki" path="res://Scenes/Enemy.tscn" id="2_xakq1"]
 [ext_resource type="PackedScene" uid="uid://c6ahr8icenhf6" path="res://Scenes/Grid.tscn" id="3_es2xp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dyqm3"]
@@ -142,6 +143,7 @@ texture = ExtResource("1_bix38")
 sources/0 = SubResource("TileSetAtlasSource_dyqm3")
 
 [node name="Level1" type="Node"]
+script = ExtResource("1_rodr2")
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(4, 4)

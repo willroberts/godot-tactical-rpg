@@ -15,7 +15,7 @@ public partial class Grid : Node2D
 	public int CellSize = 64;
 	
 	[Export]
-	public bool DebugMode = true;
+	public bool DebugMode = false;
 	
 	private Dictionary Cells = new Godot.Collections.Dictionary();
 
@@ -51,14 +51,10 @@ public partial class Grid : Node2D
 	}
 
 	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+	public override void _Ready() {}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+	public override void _Process(double delta) {}
 	
 	public void SpawnEnemy(Vector2 Position)
 	{
@@ -70,8 +66,12 @@ public partial class Grid : Node2D
 			return;
 		}
 		
-		var scn = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/Enemy.tscn");
-		var spawnedEnemy = scn.Instantiate();
+		PackedScene scn = ResourceLoader.Load<PackedScene>("res://Scenes/Enemy.tscn");
+		Node2D spawnedEnemy = (Node2D)scn.Instantiate();
+		spawnedEnemy.Position = new Vector2(
+			Position[0] * CellSize + 32,
+			Position[1] * CellSize + 32
+		);
 		AddChild(spawnedEnemy);
 	}
 	

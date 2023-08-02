@@ -18,10 +18,15 @@ public partial class Grid : Node2D
 	public bool DebugMode = false;
 	
 	private Dictionary Cells = new Godot.Collections.Dictionary();
+	
+	private Vector2 HighlightedCell = new Vector2(0, 0);
+	
+	private Rect2 CellOutline = new Rect2(0, 0, 64, 64);
 
 	// Constructor.
 	public Grid()
 	{
+		// Construct the grid by pre-allocating cells with empty Dicts.
 		foreach (int x in Enumerable.Range(0, Width))
 		{
 			foreach (int y in Enumerable.Range(0, Height))
@@ -31,8 +36,6 @@ public partial class Grid : Node2D
 				
 				if (DebugMode)
 				{
-					//GD.Print("Coords:", coords);
-
 					// Debugging: Show grid lines.
 					ReferenceRect rect = new ReferenceRect();
 					rect.Position = GridToWorld(new Vector2(x, y));
@@ -50,20 +53,30 @@ public partial class Grid : Node2D
 		}
 	}
 
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta) {}
 	
 	public override void _Input(InputEvent @event)
 	{
+		// Highlight current grid cell.
+		if (@event is InputEventMouseMotion motion)
+		{
+			Vector2 coords = WorldToGrid(motion.Position);
+			if (HighlightedCell != coords)
+			{
+				HighlightedCell = coords;
+				CellOutline.Position = GridToWorld(HighlightedCell);
+				DrawRect(CellOutline, Colors.AliceBlue, true, (float)2.0);
+			}
+		}
+
 		// Detect clicks in grid cells.
 		if (@event is InputEventMouseButton btn &&
 			btn.ButtonIndex == MouseButton.Left &&
 			btn.Pressed)
 		{
-			GD.Print("Player clicked on cell ", WorldToGrid(btn.Position), " with coordinates ", btn.Position);
+			GD.Print("Player clicked on cell ", WorldToGrid(btn.Position));
 		}
 	}
 

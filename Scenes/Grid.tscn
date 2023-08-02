@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://Scenes/Grid.cs" id="1_faqna"]
 
 [node name="Grid" type="Node2D"]
+z_index = 2
 script = ExtResource("1_faqna")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyonnu0nl7mds"]
+
+[ext_resource type="Script" path="res://Scenes/HUD.cs" id="1_dimnc"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_dimnc")

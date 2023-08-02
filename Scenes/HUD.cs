@@ -15,8 +15,7 @@ public partial class HUD : CanvasLayer
 	public override void _Input(InputEvent @event)
 	{
 		// Handle mouse cursor click animation.
-		if (@event is InputEventMouseButton btn &&
-			btn.ButtonIndex == MouseButton.Left)
+		if (@event is InputEventMouseButton btn && btn.ButtonIndex == MouseButton.Left)
 		{
 			if (btn.Pressed) { Input.SetCustomMouseCursor(CursorClick); }
 			else { Input.SetCustomMouseCursor(CursorDefault); }

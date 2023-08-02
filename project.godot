@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
 window/size/viewport_width=768
 window/size/viewport_height=1280
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="res://Assets/Sprites/Cursor/cursor.png"
 
 [dotnet]
 

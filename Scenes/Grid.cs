@@ -56,6 +56,17 @@ public partial class Grid : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta) {}
 	
+	public override void _Input(InputEvent @event)
+	{
+		// Detect clicks in grid cells.
+		if (@event is InputEventMouseButton btn &&
+			btn.ButtonIndex == MouseButton.Left &&
+			btn.Pressed)
+		{
+			GD.Print("Player clicked on cell ", WorldToGrid(btn.Position), " with coordinates ", btn.Position);
+		}
+	}
+
 	public void SpawnEnemy(Vector2 Position)
 	{
 		Dictionary ExistingContents = (Dictionary)Cells[Position];
@@ -72,6 +83,7 @@ public partial class Grid : Node2D
 			Position[0] * CellSize + 32,
 			Position[1] * CellSize + 32
 		);
+		Cells[Position] = spawnedEnemy;
 		AddChild(spawnedEnemy);
 	}
 	
@@ -80,8 +92,8 @@ public partial class Grid : Node2D
 		return Position * CellSize;
 	}
 	
-	//public Vector2 WorldToGrid(Vector2 Position)
-	//{
-	//	return Math.Floor(Position / CellSize);
-	//}
+	public Vector2 WorldToGrid(Vector2 Position)
+	{
+		return (Position / CellSize).Floor();
+	}
 }

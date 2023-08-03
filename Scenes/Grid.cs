@@ -67,7 +67,9 @@ public partial class Grid : Node2D
 			{
 				HighlightedCell = coords;
 				CellOutline.Position = GridToWorld(HighlightedCell);
-				DrawRect(CellOutline, Colors.AliceBlue, true, (float)2.0);
+
+				// FIXME: Drawing is only allowed in a _Draw() function.
+				//DrawRect(CellOutline, Colors.AliceBlue, true, (float)2.0);
 			}
 		}
 

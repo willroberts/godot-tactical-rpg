@@ -95,8 +95,8 @@ public partial class Grid : Node2D
 		PackedScene scn = ResourceLoader.Load<PackedScene>("res://Scenes/Enemy.tscn");
 		Node2D spawnedEnemy = (Node2D)scn.Instantiate();
 		spawnedEnemy.Position = new Vector2(
-			Position[0] * CellSize + 32,
-			Position[1] * CellSize + 32
+			Position[0] * CellSize + (CellSize / 2),
+			Position[1] * CellSize + (CellSize / 2)
 		);
 		Cells[Position] = spawnedEnemy;
 		AddChild(spawnedEnemy);

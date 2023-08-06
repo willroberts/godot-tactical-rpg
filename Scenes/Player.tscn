@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://cfx6pq2n0vrqt" path="res://Assets/Sprites/Tiny Dungeon/Tiles/tile_0087.png" id="1_aee6k"]
 [ext_resource type="Script" path="res://Scenes/Player.cs" id="1_ltm3m"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cesa4"]
-size = Vector2(64, 61)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7g5rx"]
+size = Vector2(64, 62)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ltm3m")
@@ -14,5 +14,5 @@ scale = Vector2(4, 4)
 texture = ExtResource("1_aee6k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1.5)
-shape = SubResource("RectangleShape2D_cesa4")
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_7g5rx")

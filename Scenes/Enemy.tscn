@@ -1,18 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1p4yn5wcgaki"]
+[gd_scene load_steps=2 format=3 uid="uid://c8563ipbr7t5v"]
 
-[ext_resource type="Script" path="res://Scenes/Enemy.cs" id="1_fj37c"]
-[ext_resource type="Texture2D" uid="uid://cviixn5dia7ou" path="res://Assets/Sprites/Tiny Dungeon/Tiles/tile_0121.png" id="1_ho6qt"]
+[ext_resource type="Texture2D" uid="uid://cviixn5dia7ou" path="res://Assets/Sprites/Tiny Dungeon/Tiles/tile_0121.png" id="1_i1yol"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhyub"]
-size = Vector2(64, 64)
-
-[node name="Enemy" type="CharacterBody2D"]
-script = ExtResource("1_fj37c")
-metadata/GridPosition = Vector2(0, 0)
+[node name="Enemy" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
-texture = ExtResource("1_ho6qt")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_yhyub")
+texture = ExtResource("1_i1yol")

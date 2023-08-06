@@ -1,18 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://spgvyskqb74d"]
+[gd_scene load_steps=2 format=3 uid="uid://coorgvhfiww4f"]
 
-[ext_resource type="Texture2D" uid="uid://cfx6pq2n0vrqt" path="res://Assets/Sprites/Tiny Dungeon/Tiles/tile_0087.png" id="1_aee6k"]
-[ext_resource type="Script" path="res://Scenes/Player.cs" id="1_ltm3m"]
+[ext_resource type="Texture2D" uid="uid://cfx6pq2n0vrqt" path="res://Assets/Sprites/Tiny Dungeon/Tiles/tile_0087.png" id="1_ue805"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7g5rx"]
-size = Vector2(64, 62)
-
-[node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_ltm3m")
+[node name="Player" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
-texture = ExtResource("1_aee6k")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_7g5rx")
+texture = ExtResource("1_ue805")

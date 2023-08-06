@@ -25,6 +25,10 @@ mouse_cursor/custom_image="res://Assets/Sprites/Cursor/cursor.png"
 
 project/assembly_name="godot-tactical-rpg"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

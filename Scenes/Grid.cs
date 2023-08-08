@@ -80,24 +80,32 @@ public partial class Grid : Node2D
 		}
 	}
 
-	public void SpawnEnemy(Vector2I position)
+	public void SpawnPlayer(Vector2I position)
 	{
-		Node2D existingContents = _cells[position];
-		if (existingContents != null)
+
+	}
+
+	public void SpawnEnemy(Vector2I cell)
+	{
+		if (IsOccupied(cell))
 		{
 			GD.Print("Cell already occupied! Not spawning enemy.");
-			GD.Print("Occupant:", existingContents);
 			return;
 		}
 		
 		PackedScene scn = ResourceLoader.Load<PackedScene>("res://Scenes/Enemy.tscn");
 		Node2D spawnedEnemy = (Node2D)scn.Instantiate();
 		spawnedEnemy.Position = new Vector2I(
-			position.X * CellSize + (CellSize / 2),
-			position.Y * CellSize + (CellSize / 2)
+			cell.X * CellSize + (CellSize / 2),
+			cell.Y * CellSize + (CellSize / 2)
 		);
-		_cells[position] = spawnedEnemy;
+		_cells[cell] = spawnedEnemy;
 		AddChild(spawnedEnemy);
+	}
+
+	public bool IsOccupied(Vector2I cell)
+	{
+		return _cells[cell] != null;
 	}
 	
 	public Vector2 GridToWorld(Vector2I position)

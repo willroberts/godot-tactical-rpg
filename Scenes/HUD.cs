@@ -7,8 +7,6 @@ public partial class HUD : CanvasLayer
 	Resource CursorClick = GD.Load("res://Assets/Sprites/Cursor/cursor_down.png");
 
 	public override void _Ready() {}
-
-	public override void _Process(double delta) {}
 	
 	public override void _Input(InputEvent @event)
 	{

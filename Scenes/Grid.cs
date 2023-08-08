@@ -17,34 +17,34 @@ public partial class Grid : Node2D
 	[Export]
 	public bool DebugMode = false;
 	
-	private Dictionary Cells = new Godot.Collections.Dictionary();
+	private Dictionary<Vector2, Node2D> _cells = new();
 	
-	private Vector2 HighlightedCell = new Vector2(0, 0);
+	private Vector2 _highlightedCell = Vector2.Zero;
 	
-	private Rect2 CellOutline = new Rect2(0, 0, 64, 64);
+	private Rect2 _cellOutline = new Rect2(0, 0, 64, 64);
 
 	// Constructor.
 	public Grid()
 	{
-		// Construct the grid by pre-allocating cells with empty Dicts.
+		// Construct the grid by pre-allocating cells with null values.
 		foreach (int x in Enumerable.Range(0, Width))
 		{
 			foreach (int y in Enumerable.Range(0, Height))
 			{
-				Vector2 coords = new Vector2(x, y);
-				Cells[coords] = new Godot.Collections.Dictionary();
+				Vector2 coords = new(x, y);
+				_cells[coords] = null;
 				
 				if (DebugMode)
 				{
 					// Debugging: Show grid lines.
-					ReferenceRect rect = new ReferenceRect();
+					ReferenceRect rect = new();
 					rect.Position = GridToWorld(new Vector2(x, y));
 					rect.Size = new Vector2(CellSize, CellSize);
 					rect.EditorOnly = false;
 					AddChild(rect);
 					
 					// Debugging: Show labels.
-					Label label = new Label();
+					Label label = new();
 					label.Position = GridToWorld(new Vector2(x, y));
 					label.Text = new Vector2(x, y).ToString();
 					AddChild(label);
@@ -54,8 +54,6 @@ public partial class Grid : Node2D
 	}
 
 	public override void _Ready() {}
-
-	public override void _Process(double delta) {}
 	
 	public override void _Input(InputEvent @event)
 	{
@@ -63,10 +61,10 @@ public partial class Grid : Node2D
 		if (@event is InputEventMouseMotion motion)
 		{
 			Vector2 coords = WorldToGrid(motion.Position);
-			if (HighlightedCell != coords)
+			if (_highlightedCell != coords)
 			{
-				HighlightedCell = coords;
-				CellOutline.Position = GridToWorld(HighlightedCell);
+				_highlightedCell = coords;
+				_cellOutline.Position = GridToWorld(_highlightedCell);
 
 				// FIXME: Drawing is only allowed in a _Draw() function.
 				//DrawRect(CellOutline, Colors.AliceBlue, true, (float)2.0);
@@ -84,8 +82,8 @@ public partial class Grid : Node2D
 
 	public void SpawnEnemy(Vector2 Position)
 	{
-		Dictionary ExistingContents = (Dictionary)Cells[Position];
-		if (ExistingContents.Count() != 0)
+		Node2D ExistingContents = _cells[Position];
+		if (ExistingContents != null)
 		{
 			GD.Print("Cell already occupied! Not spawning enemy.");
 			GD.Print("Occupant:", ExistingContents);
@@ -98,7 +96,7 @@ public partial class Grid : Node2D
 			Position[0] * CellSize + (CellSize / 2),
 			Position[1] * CellSize + (CellSize / 2)
 		);
-		Cells[Position] = spawnedEnemy;
+		_cells[Position] = spawnedEnemy;
 		AddChild(spawnedEnemy);
 	}
 	

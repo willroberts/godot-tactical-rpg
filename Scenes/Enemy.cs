@@ -12,6 +12,4 @@ public partial class Enemy : Node2D
 		//double halfHeight = TileSize / 2;
 		//Position = (currentPosition * TileSize) + new Vector2(OffsetSize, OffsetSize);
 	}
-
-	public override void _Process(double delta) {}
 }

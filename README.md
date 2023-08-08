@@ -46,8 +46,25 @@ Show Intellisense for current method: ??? (Ctrl-Space on Windows)
   - Scene can have a variable with an empty array (e.g. OnDeathEffects)
   - Custom Resources can be slotted in to modify Scene behavior
   - Can also be data resources (e.g. character stat sheets) or save files
+  - Can also import data from spreadsheets as CSV into Tables
 - Prefer composition over inheritance, especially with Scene packaging
+- Use static Option/Param classes to avoid long method signatures
+  - Copy before writing to avoid side effects
 - When to use `Godot.Collections.Array<T>` vs `T[]`
   - C# `T[]` arrays have fixed length.
   - Godot `Array<T>` arrays are actually lists, with `Add()` and `Remove()` methods.
   - Some Godot functions (e.g. `AStar.CalculatePointPath()` return packed arrays, i.e. `Vector2[]`.
+- Finite State Machine
+  - Use FSM node script with Ready/Process/UnhandledInput authortiy
+  - Has a method to transition state to new state (idle, walk, run, etc.)
+  - FSM runs the Ready/Process/UnhandledINput code for that state only
+- Async: Use `Callable` and `FuncRef` types for callbacks on signals
+- Signal Bus
+  - Create node script with signal registrations
+  - Use Project Settings > Autoload to register on startup
+- Object Pool
+  - Dictionary of instantiated scenes, using the scene type as a key
+  - Can be performant/efficient when using GC and not just RefCounted types
+- Debug Component Nodes
+  - Component node that draws something when attached to a parent
+  - GetParent(), or use Owner property to get root node of scene

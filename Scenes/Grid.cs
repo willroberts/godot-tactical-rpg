@@ -21,7 +21,7 @@ public partial class Grid : Node2D
 	
 	private Vector2 _highlightedCell = Vector2.Zero;
 	
-	private Rect2 _cellOutline = new Rect2(0, 0, 64, 64);
+	private Rect2 _cellOutline = new(0, 0, 64, 64);
 
 	// Constructor.
 	public Grid()
@@ -80,13 +80,13 @@ public partial class Grid : Node2D
 		}
 	}
 
-	public void SpawnEnemy(Vector2 Position)
+	public void SpawnEnemy(Vector2 position)
 	{
-		Node2D ExistingContents = _cells[Position];
-		if (ExistingContents != null)
+		Node2D existingContents = _cells[position];
+		if (existingContents != null)
 		{
 			GD.Print("Cell already occupied! Not spawning enemy.");
-			GD.Print("Occupant:", ExistingContents);
+			GD.Print("Occupant:", existingContents);
 			return;
 		}
 		
@@ -100,13 +100,13 @@ public partial class Grid : Node2D
 		AddChild(spawnedEnemy);
 	}
 	
-	public Vector2 GridToWorld(Vector2 Position)
+	public Vector2 GridToWorld(Vector2 position)
 	{
-		return Position * CellSize;
+		return position * CellSize;
 	}
 	
-	public Vector2 WorldToGrid(Vector2 Position)
+	public Vector2 WorldToGrid(Vector2 position)
 	{
-		return (Position / CellSize).Floor();
+		return (position / CellSize).Floor();
 	}
 }

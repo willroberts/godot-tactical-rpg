@@ -3,8 +3,8 @@ using System;
 
 public partial class HUD : CanvasLayer
 {
-	Resource CursorDefault = GD.Load("res://Assets/Sprites/Cursor/cursor.png");
-	Resource CursorClick = GD.Load("res://Assets/Sprites/Cursor/cursor_down.png");
+	private readonly Resource _cursorDefault = GD.Load("res://Assets/Sprites/Cursor/cursor.png");
+	private readonly Resource _cursorClick = GD.Load("res://Assets/Sprites/Cursor/cursor_down.png");
 
 	public override void _Ready() {}
 	
@@ -13,8 +13,8 @@ public partial class HUD : CanvasLayer
 		// Handle mouse cursor click animation.
 		if (@event is InputEventMouseButton btn && btn.ButtonIndex == MouseButton.Left)
 		{
-			if (btn.Pressed) { Input.SetCustomMouseCursor(CursorClick); }
-			else { Input.SetCustomMouseCursor(CursorDefault); }
+			if (btn.Pressed) { Input.SetCustomMouseCursor(_cursorClick); }
+			else { Input.SetCustomMouseCursor(_cursorDefault); }
 		}
 	}
 }

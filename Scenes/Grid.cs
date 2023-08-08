@@ -17,9 +17,9 @@ public partial class Grid : Node2D
 	[Export]
 	public bool DebugMode = false;
 	
-	private Dictionary<Vector2, Node2D> _cells = new();
+	private Dictionary<Vector2I, Node2D> _cells = new();
 	
-	private Vector2 _highlightedCell = Vector2.Zero;
+	private Vector2I _highlightedCell = Vector2I.Zero;
 	
 	private Rect2 _cellOutline = new(0, 0, 64, 64);
 
@@ -31,22 +31,22 @@ public partial class Grid : Node2D
 		{
 			foreach (int y in Enumerable.Range(0, Height))
 			{
-				Vector2 coords = new(x, y);
+				Vector2I coords = new(x, y);
 				_cells[coords] = null;
 				
 				if (DebugMode)
 				{
 					// Debugging: Show grid lines.
 					ReferenceRect rect = new();
-					rect.Position = GridToWorld(new Vector2(x, y));
-					rect.Size = new Vector2(CellSize, CellSize);
+					rect.Position = GridToWorld(new Vector2I(x, y));
+					rect.Size = new Vector2I(CellSize, CellSize);
 					rect.EditorOnly = false;
 					AddChild(rect);
 					
 					// Debugging: Show labels.
 					Label label = new();
-					label.Position = GridToWorld(new Vector2(x, y));
-					label.Text = new Vector2(x, y).ToString();
+					label.Position = GridToWorld(new Vector2I(x, y));
+					label.Text = new Vector2I(x, y).ToString();
 					AddChild(label);
 				}
 			}
@@ -60,7 +60,7 @@ public partial class Grid : Node2D
 		// Highlight current grid cell.
 		if (@event is InputEventMouseMotion motion)
 		{
-			Vector2 coords = WorldToGrid(motion.Position);
+			Vector2I coords = WorldToGrid(motion.Position);
 			if (_highlightedCell != coords)
 			{
 				_highlightedCell = coords;
@@ -80,7 +80,7 @@ public partial class Grid : Node2D
 		}
 	}
 
-	public void SpawnEnemy(Vector2 position)
+	public void SpawnEnemy(Vector2I position)
 	{
 		Node2D existingContents = _cells[position];
 		if (existingContents != null)
@@ -92,21 +92,22 @@ public partial class Grid : Node2D
 		
 		PackedScene scn = ResourceLoader.Load<PackedScene>("res://Scenes/Enemy.tscn");
 		Node2D spawnedEnemy = (Node2D)scn.Instantiate();
-		spawnedEnemy.Position = new Vector2(
-			Position[0] * CellSize + (CellSize / 2),
-			Position[1] * CellSize + (CellSize / 2)
+		spawnedEnemy.Position = new Vector2I(
+			position.X * CellSize + (CellSize / 2),
+			position.Y * CellSize + (CellSize / 2)
 		);
-		_cells[Position] = spawnedEnemy;
+		_cells[position] = spawnedEnemy;
 		AddChild(spawnedEnemy);
 	}
 	
-	public Vector2 GridToWorld(Vector2 position)
+	public Vector2 GridToWorld(Vector2I position)
 	{
 		return position * CellSize;
 	}
 	
-	public Vector2 WorldToGrid(Vector2 position)
+	public Vector2I WorldToGrid(Vector2 position)
 	{
-		return (position / CellSize).Floor();
+		Vector2 converted = (position / CellSize).Floor();
+		return new Vector2I((int)converted.X, (int)converted.Y);
 	}
 }

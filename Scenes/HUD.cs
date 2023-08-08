@@ -16,5 +16,7 @@ public partial class HUD : CanvasLayer
 			if (btn.Pressed) { Input.SetCustomMouseCursor(_cursorClick); }
 			else { Input.SetCustomMouseCursor(_cursorDefault); }
 		}
+
+		// Handle unit selection. Should this be in a Unit class?
 	}
 }

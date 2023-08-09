@@ -80,9 +80,22 @@ public partial class Grid : Node2D
 		}
 	}
 
-	public void SpawnPlayer(Vector2I position)
+	public void SpawnPlayer(Vector2I cell)
 	{
+		if (IsOccupied(cell))
+		{
+			GD.Print("Cell already occupied! Not spawning player.");
+			return;
+		}
 
+		PackedScene scn = ResourceLoader.Load<PackedScene>("res://Scenes/Player.tscn");
+		Node2D player = (Node2D)scn.Instantiate();
+		player.Position = new Vector2I(
+			cell.X * CellSize + (CellSize / 2),
+			cell.Y * CellSize + (CellSize / 2)
+		);
+		_cells[cell] = player;
+		AddChild(player);
 	}
 
 	public void SpawnEnemy(Vector2I cell)

@@ -12,7 +12,7 @@ public partial class Level1 : Node
 		_grid = GetNode<Grid>("Grid");
 
 		// Spawn the player.
-		// TBD.
+		_grid.SpawnPlayer(new Vector2I(5, 2));
 
 		// Spawn enemies.
 		_grid.SpawnEnemy(new Vector2I(8, 6));
